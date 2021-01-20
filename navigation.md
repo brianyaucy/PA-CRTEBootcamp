@@ -2,7 +2,7 @@
 
 [Knowledge Base]()
 
-  * [Enumeration](n01-Enumerations.md)
+  * [Enumeration](n1-BasicKnowledge.md)
 
 - - - -
 

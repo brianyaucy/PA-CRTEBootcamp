@@ -2,7 +2,6 @@
 
 - [Enumerations](#enumerations)
   - [Active Directory - Components](#active-directory---components)
-  - [Tools](#tools)
   - [PowerShell Detections](#powershell-detections)
   - [Execution Policy](#execution-policy)
   - [Bypassing PowerShell Security - Invisi-Shell](#bypassing-powershell-security---invisi-shell)
@@ -28,25 +27,6 @@
 - Distribute information across domain controllers
 
 <br/>
-
-----
-
-## Tools
-
-To enumerate AD environment, there are 2 common tools:
-
-1. PowerView
-
-```
-. .\PowerView.ps1
-```
-
-2. ActiveDirectory.psd1
-
-```
-Import-Module .\Microsoft.ActiveDirectory.Management.dll
-Import-Module .\ActiveDirectory.psd1
-```
 
 ----
 

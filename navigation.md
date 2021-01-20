@@ -6,6 +6,7 @@
   * [Domain Enumeration](n02-DomainEnum.md)
   * [Local Privilege Escalation](n03-PrivilegeEsc.md)
   * [PSRemoting](n04-PSRemoting.md)
+  * [Kerberos](n05-Kerberos.md)
 
 - - - -
 

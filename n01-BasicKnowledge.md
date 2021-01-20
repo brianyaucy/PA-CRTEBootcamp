@@ -4,6 +4,7 @@
   - [Active Directory - Components](#active-directory---components)
   - [Tools](#tools)
   - [PowerShell Detections](#powershell-detections)
+  - [Execution Policy](#execution-policy)
 
 ---
 
@@ -77,6 +78,31 @@ There are 4 possible PowerShell detections:
 - Integrated with Applocker and WDAC (Device Guard)
 - Disable almost all interesting commands (e.g. `.NET`) and common Red Team powershell scripts
 - The only one works in CLM will be the official AD module
+
+<br/>
+
+----
+
+## Execution Policy
+
+- **This is NOT a security measure!**
+- Just to prevent user from accidently executing scripts
+- Methods to bypass:
+
+```
+powershell -ep bypass
+```
+
+```
+powershell -c <command>
+```
+
+```
+powershell -encodedcommand $env:PSExecutionaPolicyPreference="bypass"
+```
+
+- Also see:<br/>
+https://www.netspi.com/blog/entryid/238/15-ways-to-bypass-the-powershellexecution-policy
 
 <br/>
 

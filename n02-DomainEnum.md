@@ -68,7 +68,7 @@ A file will be generated.
 
 <br/>
 
-**Step 2: Upload to BloodHound**
+The remaining steps see [Lab - BloodHound](l00-Bloudhound.md)
 
 ----
 

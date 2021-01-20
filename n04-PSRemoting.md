@@ -138,6 +138,8 @@ PowerShell remoting supports the system-wide transcripts and deep scriptblock lo
 winrs -r:<hostname> -u:<domain>\<user> -p:<password> <command>
 ```
 
+- https://pentestlab.blog/2018/05/15/lateral-movement-winrm/
+
 <br/>
 
 We can also use COM objects of WSMan COM object:

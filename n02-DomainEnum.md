@@ -11,6 +11,7 @@
   - [Local Group Enumeration on machines](#local-group-enumeration-on-machines)
   - [GPO Enumeration](#gpo-enumeration)
   - [OU Enumeration](#ou-enumeration)
+  - [ACL Enumeration](#acl-enumeration)
 
 ----
 
@@ -505,4 +506,86 @@ Find-GPOComputerAdmin -OUName 'OU=Mgmt,DC=us,DC=techcorp,DC=local'
 ```
 
 <br/>
+
+---
+
+## ACL Enumeration
+
+**Access Control Model** enables control on the ability of a process to access objects and other resources in AD based on:
+
+- Access Tokens (security context of a process - identity and privs of user)
+- Security Descriptors (SID of the owner, Discretionary ACL (DACL) and System ACL (SACL))
+- Ref: <br/>
+https://docs.microsoft.com/en-us/windows/win32/secauthz/access-control-model
+
+<br/>
+
+![picture 28](images/ca5ea2583b1b7a2cede98ab92a0a15fb3ad2346cbed4358fd5432f9f81907647.png)  
+
+
+<br/>
+
+**Access Control List (ACL)** is a list of **Access Control Entries (ACE)**, which corresponds to individual permission or audits access. 
+
+- i.e. Who has the permission and what can be done on an object?
+
+ACLs are vital to security architecture of AD. There are 2 types of ACL:
+
+- DACL: Define the permissions trustees (a user / group) have on an object
+- SACL: Log success and failure audit messages when an object is accessed
+
+<br/>
+
+![picture 29](images/c1504cb18d0d341ede99982d65deb0a62a566594e6f03839b8d36e521b2fc48f.png)  
+
+<br/>
+
+**Get the ACLs associated with a specified object**
+
+- PowerView
+
+```
+Get-DomainObjectAcl -Identity student64 -ResolveGUIDs
+```
+
+<br/>
+
+**Get the ACLs associated with the specified LDAP path to be used for search**
+
+- PowerView
+
+```
+Get-DomainObjectAcl -Searchbase "LDAP://CN=Domain Admins,CN=Users,DC=us,DC=techcorp,DC=local" -ResolveGUIDs -Verbose
+```
+
+Note:<br/>
+- Active Directory Rights:<br/>
+  https://docs.microsoft.com/en-us/dotnet/api/system.directoryservices.activedirectoryrights?redirectedfrom=MSDN&view=dotnet-plat-ext-5.0
+- Extended Rights:<br/>
+  https://technet.microsoft.com/en-us/library/ff405676.aspx
+
+<br/>
+
+**Search for interesting ACEs**
+
+- Use without `-ResolveGUIDs` for faster result
+- PowerView
+
+```
+Find-InterestingDomainAcl -ResolveGUIDs
+```
+
+<br/>
+
+**Get the ACLs associated with the specified path**
+
+- PowerView
+
+```
+Get-PathAcl -Path "\\us-dc\sysvol"
+```
+
+<br/>
+
+---
 

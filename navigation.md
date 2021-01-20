@@ -12,5 +12,7 @@
   * [Lab 0 - BloodHound](l00-Bloodhound.md)
   * [Lab 1 - Hands-on 1 - Basic Enumeration](l01-Enum.md)
   * [Lab 2 - Hands-on 2 - GPO Enumeration](l02-GPOEnum.md)
-  
+  * [Lab 3 - Hands-on 3 - ACL Enumeration](l03-ACLEnum.md)
+
+
 - - - - 

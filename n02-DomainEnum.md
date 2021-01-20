@@ -4,7 +4,6 @@
   - [Tools](#tools)
   - [BloodHound](#bloodhound)
   - [Domain Enumeration](#domain-enumeration-1)
-  - [<br/>](#)
   - [Domain Policy Enumeration](#domain-policy-enumeration)
   - [Domain User Enumeration](#domain-user-enumeration)
   - [Domain Computer Enumeration](#domain-computer-enumeration)
@@ -130,6 +129,7 @@ Get-DomainSID
 ```
 
 <br/>
+
 ---
 
 ## Domain Policy Enumeration
@@ -351,6 +351,7 @@ Get-ADPrincipalGroupMembership -Identity studentuser64
 - Need Admin Privilege on non-dc machines
 
 - PowerView
+
 ```
 Get-NetLocalGroup -ComputerName us-dc
 ```

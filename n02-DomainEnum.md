@@ -3,6 +3,7 @@
 - [Domain Enumeration](#domain-enumeration)
   - [Tools](#tools)
   - [BloodHound](#bloodhound)
+  - [PowerShell - Domain Enumeration](#powershell---domain-enumeration)
 
 ----
 
@@ -74,3 +75,48 @@ The remaining steps see [Lab - BloodHound](l00-Bloodhound.md)
 
 ----
 
+## PowerShell - Domain Enumeration
+
+**Get Current Domain**
+
+- PowerView
+  
+```
+Get-NetDomain
+```
+
+- AD Module
+  
+```
+Get-ADDomain
+```
+
+<br/>
+
+**Get object of another domain**
+
+- PowerView
+
+```
+Get-Domain -Domain techcorp.local
+```
+
+- AD Module
+
+```
+Get-ADDomain -Identity techcorp.local
+```
+
+**Get domain SID of the current domain**
+
+- PowerView
+
+```
+Get-DomainSID
+```
+
+- AD Module
+
+```
+(Get-ADDomin).DomainSID
+```

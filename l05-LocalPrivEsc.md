@@ -493,6 +493,9 @@ Enter-PSSession -ComputerName us-mgmt.us.techcorp.local
 Note:<br/>
 We can also use `winrm -r:us-mgmt cmd.exe`.
 
+![picture 55](images/84e429798792390cc9a379131dca88d8933d703dc0b02efc5e2f14306239bd52.png)  
+
+
 <br/>
 
 ---

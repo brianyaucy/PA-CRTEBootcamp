@@ -18,11 +18,12 @@ https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
 . .\PowerView.ps1
 ```
 
+<br/>
+
 **2. ActiveDirectory.psd1**
 
-https://docs.microsoft.com/en-us/powershell/module/addsadministration/?view=win10-ps
-<br/>
-https://github.com/samratashok/ADModule
+- https://docs.microsoft.com/en-us/powershell/module/addsadministration/?view=win10-ps
+- https://github.com/samratashok/ADModule
 
 ```
 Import-Module .\Microsoft.ActiveDirectory.Management.dll

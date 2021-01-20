@@ -91,12 +91,28 @@ Get-DomainGPO
 
 ## Enumerate GPO applied on the Students OU
 
+First get the `gplink` attribute of the Student OU:
+
 ```
-Get-DomainGPO -ComputerIdentity student64.us.techcorp.local 2>$null | Select displayname
+Get-DomainOU | Where-Object {$_.name -Like "*Student*"}
 ```
 
-![picture 25](images/695349605e0de4a97522e28ef9dc77e86521f7afcc6f49adde51d3606e96bae1.png)  
+![picture 26](images/eda670cc554c2b74bb3360aa04797d47d5430a8e035c44d9b0e4c08c84106341.png)  
+
+- `{FCE16496-C744-4E46-AC89-2D01D76EAD68}`
+
+<br/>
+
+Then list the GPO applied on the Students OU:
+
+```
+Get-DomainGPO -Identity '{FCE16496-C744-4E46-AC89-2D01D76EAD68}'
+```
+
+![picture 27](images/83777f9889a4d70667e00ea5e13f481687a2d599bffc5648b32d2b5fa9c7abe3.png)  
+
 
 <br/>
 
 ----
+

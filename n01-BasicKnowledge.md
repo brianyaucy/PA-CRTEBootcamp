@@ -5,6 +5,7 @@
   - [Tools](#tools)
   - [PowerShell Detections](#powershell-detections)
   - [Execution Policy](#execution-policy)
+  - [Bypassing PowerShell Security - Invisi-Shell](#bypassing-powershell-security---invisi-shell)
 
 ---
 
@@ -103,6 +104,48 @@ powershell -encodedcommand $env:PSExecutionaPolicyPreference="bypass"
 
 - Also see:<br/>
 https://www.netspi.com/blog/entryid/238/15-ways-to-bypass-the-powershellexecution-policy
+
+<br/>
+
+----
+
+## Bypassing PowerShell Security - Invisi-Shell
+
+We can use **Invisi-Shell** to bypass the security controls in PowerShell. 
+
+- https://github.com/OmerYa/Invisi-Shell
+
+<br/>
+
+It hooks (by using **CLR Profiler API**) the `.NET` assemblies `System.Management.Automation.dll` and `System.Core.dll` to bypass logging.
+
+<br/>
+
+> *A common language runtime (CLR) profiler is a dynamic link library (DLL) that consists of functions that receive messages from, and send messages to, the CLR by using the profiling API. The profiler DLL is loaded by the CLR at run time.*
+
+- https://docs.microsoft.com/en-us/dotnet/framework/unmanaged-api/profiling/profiling-overview
+
+<br/>
+
+Note that if you want to bypass modern AV/EDR, you have to know how to customize tools instead of using publicly available ones.
+
+<br/>
+
+To use **Invisi-Shell**:
+
+- With admin privileges:
+
+```
+RunWithPathAsAdmin.bat
+```
+
+- Without admin privileges:
+
+```
+RunWithRegistryNonAdmin.bat
+```
+
+- Type `exit` from the new PS session to complete the clean up.
 
 <br/>
 

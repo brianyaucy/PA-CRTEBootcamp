@@ -69,7 +69,7 @@ A file will be generated.
 
 <br/>
 
-The remaining steps see [Lab - BloodHound](l00-Bloudhound.md)
+The remaining steps see [Lab - BloodHound](l00-Bloodhound.md)
 
 ----
 

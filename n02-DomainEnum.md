@@ -13,6 +13,8 @@
   - [OU Enumeration](#ou-enumeration)
   - [ACL Enumeration](#acl-enumeration)
   - [Trust Enumeration](#trust-enumeration)
+  - [User Hunting](#user-hunting)
+  - [Defense](#defense)
 
 ----
 
@@ -749,6 +751,97 @@ Get-ForestTrust
 ```
 Get-ADTrust -Filter 'intraForest -ne $True' -Server (Get-ADForest).Name
 ```
+
+<br/>
+
+---
+
+## User Hunting
+
+**Find all machines on the current domain where the current user has local admin access**
+
+![picture 43](images/d44da1acd011b3b9e3b302d58a21d5e4b7aa69e2c0c14c4a3469aed5b49aaf67.png)  
+
+
+- The following command queries the DC of the current or provided domain for a list of computers (`Get-DomainComputer`), and then use multi-threaded `Test-AdminAccess` on each machine.
+  
+- PowerView
+
+```
+Find-LocalAdminAccess -Verbose
+```
+
+<br/>
+
+This can also be done with the help of remtoe admin tools like WMI and PS Remoting. Quite useful in cases ports (RPC and SMB) used by `Find-LocalAdminAccess` are blocked. You can use:
+
+- `Find-WMILocalAdminAccess.ps1`
+- `Find-PSRemotingLocalAdminAccess.ps1`
+
+<br/>
+
+**Find computers where a domain admin (or specified user/group) has sessions**
+
+![picture 44](images/298f18ba0c4d5f61f9b295d73484a17ff754a2d1429a5c15f1660aabe8edac44.png)  
+
+- PowerView
+
+```
+Find-DomainUserLocation -Verbose
+```
+
+```
+Find-DomainUserLocation -UserGroupIdentity "StudentUsers"
+```
+
+This function queries the DC of the current or provided domain for members of the given group (Domain Admins by default) using `Get-DomainGroupMember`, gets a lsit of computer `Get-DomainComputer` and list sessions and logged on users `Get-NetSession` / `Get-NetLoggedOn` from each machine.
+
+<br/>
+
+**Find computers where a domain admin session is available and curretn user has admin access**
+
+- Use `Test-AdminAccess`
+- PowerView
+
+```
+Find-DomainUserLocation -CheckAccess
+```
+
+<br/>
+
+**Find computers (File Servers / Distributed File Servers) where a domain admin session is available**
+
+- PowerView
+
+```
+Find-DomainUserLocation -Stealth
+```
+
+<br/>
+
+## Defense
+
+Most of the enumeration mixes really well with the normal traffic to the DC. But local admin hunting and Domain Admins hunting leave **Windows Security Event 4624 and 4634 on ALL the tested machines** and **additional 4672 in case of success**.
+
+<br/>
+
+Other than detection, hardening can be done on both DC and other machines to contain the information provided by the queried machine.
+
+<br/>
+
+**Netcease** is a script which changes permissions on the `NetSessionEnum` method by removign permission for Authenticated Users group. This fails many of the attacker's session enumeration and hence user hunting capabilities.
+
+- https://github.com/p0w3rsh3ll/NetCease
+
+```
+.\NetCease.ps1
+```
+
+<br/>
+
+Another interesting script from the same author is SAMRi10 which hardens Windows 10 and Server 2016 against enumeration which usees SAMR protocol (like net.exe).
+
+- https://gallery.technet.microsoft.com/SAMRi10-Hardening-Remote-48d94b5b
 
 <br/>
 

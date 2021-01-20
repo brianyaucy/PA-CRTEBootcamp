@@ -9,6 +9,8 @@
   - [Domain Computer Enumeration](#domain-computer-enumeration)
   - [Domain User Group Enumeration](#domain-user-group-enumeration)
   - [Local Group Enumeration on machines](#local-group-enumeration-on-machines)
+  - [GPO Enumeration](#gpo-enumeration)
+  - [OU Enumeration](#ou-enumeration)
 
 ----
 
@@ -377,3 +379,130 @@ Get-NetLocalGroupMember -ComputerName us-dc
 ```
 Get-NetLocalGroupMember -ComputerName us-dc -GroupName Administrators
 ```
+
+<br/>
+
+---
+
+## GPO Enumeration
+
+**Group Policy** provides the ability to manage/changes configuration easily and centrally in AD. It allow configuration of:
+
+- Security settings
+- Registry-based policy settings
+- Group policy preferences like startup/shutdown/logon/logoff scripts settings
+
+<br/>
+
+However, GPO can be abused for various attacks like privesc, backdoors, persistence, etc.
+
+<br/>
+
+**Get list of GPO in the current domain**
+
+- PowerView
+
+```
+Get-DomainGPO
+```
+
+```
+Get-DomainGPO -ComputerIdentity student64.us.techcorp.local
+```
+
+<br/>
+
+**Get GPO(s) which use Restricted Group or groups.xml for interesting users**
+
+- PowerView
+
+```
+Get-DomainGPOLocalGroup
+```
+
+<br/>
+
+**Get users which are in a local group of a machine using GPO**
+
+- Give interesting usrs to target
+- PowerView
+
+```
+Get-DomainGPOComputerLocalGroupMapping -ComputerIdentity student64.us.techcorp.local
+```
+
+```
+Get-DomainGPOComputerLocalGroupMapping -ComputerIdentity us-mgmt.us.techcorp.local
+```
+
+<br/>
+
+**Get machines where the given user is a member of a specific group**
+
+```
+Get-DomainGPOUserLocalGroupMapping -Identity studentuser64 -Verbose
+```
+
+<br/>
+
+---
+
+## OU Enumeration
+
+**Get OUs in a domain**
+
+- PowerView
+
+```
+Get-DomainOU
+```
+
+- AD Module
+
+```
+Get-ADOrganizationalUnit -Filter * -Properties *
+```
+
+<br/>
+
+**Get GPO applied on an OU**
+
+- Read GPOname from gplink attribute from `Get-DomainOU`
+- PowerView
+
+```
+Get-DomainGPO -Identity '{FCE16496-C744-4E46-AC89-2D01D76EAD68}'
+```
+
+<br/>
+
+**Get users which are in a local group of a machine in any OU using GPO**
+
+- PowerView
+
+```
+(Get-DomainOU).distinguishedname | %{Get-DomainComputer -SearchBase $_} | Get-DomainGPOComputerLocalGroupMapping 2>$null
+```
+
+<br/>
+
+**Get users which are in a local group of a machine in a particular OU using GPO**
+
+- PowerView
+
+```
+(Get-DomainOU -Identity 'OU=Mgmt,DC=us,DC=techcorp,DC=local').distinguishedname | %{Get-DomainComputer -SearchBase $_} | Get-DomainGPOComputerLocalGroupMapping 2>$null
+```
+
+For older versions of PowerView, the below commands would also work:
+
+```
+Get-DomainGPOComputerLocalGroupMapping -OUIdentity 'OU=Mgmt,DC=us,DC=techcorp,DC=local'
+```
+
+```
+Find-GPOComputerAdmin -OUName 'OU=Mgmt,DC=us,DC=techcorp,DC=local'
+```
+
+<br/>
+

@@ -9,6 +9,6 @@
 
 [Lab]()
 
-  * [Lab 1](l01-Enumerations.md)
+  * [Lab 0](l00-Bloodhound.md)
 
 - - - - 

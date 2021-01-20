@@ -10,5 +10,6 @@
 [Lab]()
 
   * [Lab 0 - BloodHound](l00-Bloodhound.md)
+  * [Lab 1 - Hands-on 1 - Basic Enumeration](l01-Enum.md)
 
 - - - - 

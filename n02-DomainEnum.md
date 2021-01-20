@@ -12,7 +12,7 @@ To enumerate AD environment, there are 2 common tools:
 
 1. PowerView
 
-- https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
+https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
 
 ```
 . .\PowerView.ps1
@@ -20,8 +20,9 @@ To enumerate AD environment, there are 2 common tools:
 
 2. ActiveDirectory.psd1
 
-- https://docs.microsoft.com/en-us/powershell/module/addsadministration/?view=win10-ps
-- https://github.com/samratashok/ADModule
+https://docs.microsoft.com/en-us/powershell/module/addsadministration/?view=win10-ps
+<br/>
+https://github.com/samratashok/ADModule
 
 ```
 Import-Module .\Microsoft.ActiveDirectory.Management.dll
@@ -32,7 +33,7 @@ Import-Module .\ActiveDirectory.psd1
 
 3. Bloodhound (C# and PowerShell Collectors)
    
-- https://github.com/BloodHoundAD/BloodHound
+https://github.com/BloodHoundAD/BloodHound
 
 ----
 

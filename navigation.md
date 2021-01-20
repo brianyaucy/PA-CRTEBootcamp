@@ -9,6 +9,6 @@
 
 [Lab]()
 
-  * [Lab 0](l00-Bloodhound.md)
+  * [Lab 0 - BloodHound](l00-Bloodhound.md)
 
 - - - - 

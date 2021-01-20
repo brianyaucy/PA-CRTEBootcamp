@@ -424,7 +424,7 @@ Get-DomainGPOLocalGroup
 
 **Get users which are in a local group of a machine using GPO**
 
-- Give interesting usrs to target
+- Give interesting users to target
 - PowerView
 
 ```

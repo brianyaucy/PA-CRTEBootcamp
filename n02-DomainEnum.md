@@ -12,6 +12,7 @@
   - [GPO Enumeration](#gpo-enumeration)
   - [OU Enumeration](#ou-enumeration)
   - [ACL Enumeration](#acl-enumeration)
+  - [Trust Enumeration](#trust-enumeration)
 
 ----
 
@@ -589,4 +590,165 @@ Get-PathAcl -Path "\\us-dc\sysvol"
 <br/>
 
 ---
+
+## Trust Enumeration
+
+In an AD environment, **trust** is a relationship between two domains or forests which allows users of one domain or forest to access resources in the other domain or forest.
+
+Trust can be automatic (parent-child / same forest / etc.) or established (forest, external).
+
+**Trusted Domain Objects (TDOs)** represent the trust relationships in a domain.
+
+<br/>
+
+**One-way Trust**
+
+![picture 32](images/78ebfa7db6a79e257973dc22bb5ae00f60ea3ab9680cac5030c1836f8d3ddefd.png)  
+
+- Unidirectional
+- Users in the trusted domain can access resources in the trusting domain but the reverse is not true
+
+<br/>
+
+**Two-way Trust**
+
+![picture 33](images/3628a8cf0747df365f312d0157dfe30dc39b10a1bc5062a8a1b6b0e1d8597ac7.png)  
+
+- Bi-directional
+- Users of both domains can access resources in the other domain
+
+<br/>
+
+**Transitivity**
+
+![picture 34](images/0da2f507acd869d109420084a1402cfad887c825e2b9e25a8da3f62c132eda88.png)  
+
+**Transitive** - can be extended to establish trust relationships with other domains. **All the default intra-forest trust relationships (Tree-root / Parent-Child) between domains within a same forest are transitive 2-way trusts.**
+
+<br/>
+
+**Nontransitive** - cannot be extended to other domains in the forest. It can be 1-way or 2-way. This is the default trust (called external trust) between 2 domains in different forests when forests do not have a trust relationship.
+
+<br/>
+
+**Default/Automatic Trusts**
+
+1. Parent-child Trust - Automatically created betweem the new domain and the domain that precedes it in the namespace hierarchy, whenever a new domain is added in a tree. (e.g. `us.techcorp.local` is a child of `techcorp.local`). This trust is always `2-way transitive`.
+   
+2. Tree-root trust - Automatically created between whenever a new domain tree is added to a forest root. This trust is always `2-way transitive`.
+
+![picture 35](images/a41215526f3719480303c71d4d25d808a3e78998f077bae6a882a5a6d99daf32.png)  
+
+<br/>
+
+**External Trusts**
+
+![picture 36](images/091df47588cdca46920189ca831527fca82d4e13bb82b21af5c49ce767a7d2a7.png)  
+
+
+It is between two domains in different forests when forests do not have a trust relationship. It can be `1-way` or `2-way` and is `non-transitive`.
+
+<br/>
+
+**Forest Trust**
+
+![picture 37](images/ea10898c15bf929995b16a1de5f44125ee7507be999e1e288730e43b1dd06ffb.png)  
+
+
+Forest Trusts are:
+
+- between forest root domain
+- cannot be extended to a 3rd forest (no implicit trust)
+- can be 1-way or 2-way
+- can be transitive or non-transitive
+
+<br/>
+
+**Get a list of all domain trusts for the current domain**
+
+- PowerView
+
+```
+Get-DomainTrust
+```
+
+```
+Get-DomainTrust -Domain techcorp.local
+```
+
+- AD Module
+
+```
+Get-ADTrust
+```
+
+```
+Get-ADTrust -Identity techcorp.local
+```
+
+<br/>
+
+**Get details about the current forest**
+
+- PowerView
+
+```
+Get-Forest
+```
+
+- AD Module
+
+```
+Get-ADForest
+```
+
+<br/>
+
+**Get all domains in the current forest**
+
+- PowerView
+
+```
+Get-ForestDomain
+```
+
+- AD Module
+
+```
+(Get-ADForest).Domains
+```
+
+<br/>
+
+**Get all global catalogs for the current forest**
+
+- PowerView
+
+```
+Get-ForestGlobalCatalog
+```
+
+- AD Module
+
+```
+Get-ADForest | Select -ExpandProperty GlobalCatalogs
+```
+
+<br/>
+
+**Map trusts of a forest**
+
+- PowerView
+
+```
+Get-ForestTrust
+```
+
+- AD Module
+
+```
+Get-ADTrust -Filter 'intraForest -ne $True' -Server (Get-ADForest).Name
+```
+
+<br/>
 

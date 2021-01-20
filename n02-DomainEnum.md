@@ -561,6 +561,7 @@ Get-DomainObjectAcl -Searchbase "LDAP://CN=Domain Admins,CN=Users,DC=us,DC=techc
 Note:<br/>
 - Active Directory Rights:<br/>
   https://docs.microsoft.com/en-us/dotnet/api/system.directoryservices.activedirectoryrights?redirectedfrom=MSDN&view=dotnet-plat-ext-5.0
+  <br/>
 - Extended Rights:<br/>
   https://technet.microsoft.com/en-us/library/ff405676.aspx
 

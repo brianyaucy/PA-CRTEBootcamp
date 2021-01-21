@@ -11,6 +11,7 @@
   * [Domain Privilege Escalation - LAPS](n07-LAPS.md)
   * [Lateral Movement - Mimikatz / PtH / DCSync](n08-Mimikatz.md)
   * [Offensive .NET](n09-OffensiveDotNet.md)
+  * [Domain Privilege Escalation - MS Exchange](n10-MSProdTrust.md)
 
 - - - -
 

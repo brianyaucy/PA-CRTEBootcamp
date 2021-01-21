@@ -150,7 +150,7 @@ Rebeus.exe asktgt /user:administrator /aes256:<aes256key> /opsec /createnetonly:
 
 ## DCSync
 
-To extract credentials from the DC without code execution on the DC, we can use **DCSync**. Note by default, **Domain **Privilege**** are required to run DCSync.
+To extract credentials from the DC without code execution on the DC, we can use **DCSync**. Note by default, **Domain Privilege** are required to run DCSync.
 
 To use the DCSync feature for getting krbtgt hash execute the below command with Domain Admin privileges for the `us` domain:
 

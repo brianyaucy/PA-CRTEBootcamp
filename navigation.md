@@ -10,6 +10,7 @@
   * [Domain Privilege Escalation - Kerberoast](n06-Kerberoast.md)
   * [Domain Privilege Escalation - LAPS](n07-LAPS.md)
   * [Lateral Movement - Mimikatz / PtH / DCSync](n08-Mimikatz.md)
+  * [Offensive .NET](n09-OffensiveDotNet.md)
 
 - - - -
 

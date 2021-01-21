@@ -59,3 +59,4 @@ C:\AD\Tools\john-1.9.0-jumbo-1-win64\run\john.exe --wordlist=C:\AD\Tools\kerbero
 <br/>
 
 ---
+

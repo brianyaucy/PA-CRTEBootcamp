@@ -12,6 +12,7 @@
   * [Lateral Movement - Mimikatz / PtH / DCSync](n08-Mimikatz.md)
   * [Offensive .NET](n09-OffensiveDotNet.md)
   * [Domain Privilege Escalation - MS Exchange](n10-MSProdTrust.md)
+  * [Domain Privilege Escalation - Delegations](n11-Delegation.md)
 
 - - - -
 

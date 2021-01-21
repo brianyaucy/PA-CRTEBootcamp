@@ -25,5 +25,6 @@
   * [Lab 6 - Hands-on 6 - Kerberoast](l06-Kerberoast.md)
   * [Lab 7 - Hands-on 7 - Kerberoast & SetSPN](l07-SetSPN.md)
   * [Lab 8 - Hands-on 8 - LAPS](l08-LAPS.md)
+  * [Lab 9 - Hands-on 9 - Mimikatz](l09-Mimikatz.md)
 
 - - - - 

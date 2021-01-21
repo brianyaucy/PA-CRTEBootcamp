@@ -21,5 +21,7 @@
   * [Lab 4 - Hands-on 4 - Trusts Enumeration](l04-TrustsEnum.md)
   * [Lab 5 - Hands-on 5 - Local Privilege Escalation](l05-LocalPrivEsc.md)
   * [Lab 6 - Hands-on 6 - Kerberoast](l06-Kerberoast.md)
+  * [Lab 7 - Hands-on 7 - Kerberoast & SetSPN](l07-SetSPN.md)
+  * [Lab 8 - Hands-on 8 - LAPS](l08-LAPS.md)
 
 - - - - 

@@ -8,6 +8,7 @@
   * [PSRemoting](n04-PSRemoting.md)
   * [Kerberos](n05-Kerberos.md)
   * [Domain Privilege Escalation - Kerberoast](n06-Kerberoast.md)
+  * [Domain Privilege Escalation - LAPS](n07-LAPS.md)
 
 - - - -
 

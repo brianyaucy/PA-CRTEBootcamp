@@ -7,6 +7,7 @@
   * [Local Privilege Escalation](n03-PrivilegeEsc.md)
   * [PSRemoting](n04-PSRemoting.md)
   * [Kerberos](n05-Kerberos.md)
+  * [Domain Privilege Escalation](n06-Kerberoast.md)
 
 - - - -
 
@@ -18,5 +19,6 @@
   * [Lab 3 - Hands-on 3 - ACL Enumeration](l03-ACLEnum.md)
   * [Lab 4 - Hands-on 4 - Trusts Enumeration](l04-TrustsEnum.md)
   * [Lab 5 - Hands-on 5 - Local Privilege Escalation](l05-LocalPrivEsc.md)
+  * [Lab 6 - Hands-on 6 - Kerberoast](l06-Kerberoast.md)
 
 - - - - 

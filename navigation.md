@@ -27,5 +27,6 @@
   * [Lab 7 - Hands-on 7 - Kerberoast & SetSPN](l07-SetSPN.md)
   * [Lab 8 - Hands-on 8 - LAPS](l08-LAPS.md)
   * [Lab 9 - Hands-on 9 - Mimikatz](l09-Mimikatz.md)
+  * [Lab 10 - Hands-on 10 - Abuse Trust of MS Exchange](l10-Exchange.md)
 
 - - - - 

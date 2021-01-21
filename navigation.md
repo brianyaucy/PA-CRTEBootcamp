@@ -9,6 +9,7 @@
   * [Kerberos](n05-Kerberos.md)
   * [Domain Privilege Escalation - Kerberoast](n06-Kerberoast.md)
   * [Domain Privilege Escalation - LAPS](n07-LAPS.md)
+  * [Lateral Movement - Mimikatz / PtH / DCSync](n08-Mimikatz.md)
 
 - - - -
 

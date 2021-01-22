@@ -14,6 +14,7 @@
   * [Domain Privilege Escalation - MS Exchange](n10-MSProdTrust.md)
   * [Domain Privilege Escalation - Delegations](n11-Delegation.md)
   * [Domain Persistence - Golden / Silver tickets](n12-goldensilverticket.md)
+  * [Domain Persistence - Skeleton Key, DSRM and Custom SSP](n13-SkeletonKeyDSRMCSSP.md)
 
 - - - -
 

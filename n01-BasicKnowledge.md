@@ -70,6 +70,10 @@ Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\D
 
 <br/>
 
+Note that you can also check `C:\Windows\System32\CodeIntegrity\` to see if there is any `BlockRules.xml` / `SiPolicy.p7b` / `Merged.xml`.
+
+<br/>
+
 ----
 
 ## Execution Policy

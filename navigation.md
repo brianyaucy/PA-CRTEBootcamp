@@ -31,5 +31,6 @@
   * [Hands-on 10 - Abuse Trust of MS Exchange](l10-Exchange.md)
   * [Hands-on 11 - Unconstrained Delegation](l11-UnconstrainedDelegation.md)
   * [Hands-on 12 - Constrained Delegation](l12-ConstrainedDelegation.md)
+  * [Hands-on 13 - Resource-based Constrained Delegation](l13-RBCD.md)
 
 - - - - 

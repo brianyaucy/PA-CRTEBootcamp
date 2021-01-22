@@ -13,6 +13,7 @@
   * [Offensive .NET](n09-OffensiveDotNet.md)
   * [Domain Privilege Escalation - MS Exchange](n10-MSProdTrust.md)
   * [Domain Privilege Escalation - Delegations](n11-Delegation.md)
+  * [Domain Persistence - Golden / Silver tickets](n12-goldensilverticket.md)
 
 - - - -
 

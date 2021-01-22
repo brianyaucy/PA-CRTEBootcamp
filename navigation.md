@@ -18,16 +18,17 @@
 
 [Lab]()
 
-  * [Lab 0 - BloodHound](l00-Bloodhound.md)
-  * [Lab 1 - Hands-on 1 - Basic Enumeration](l01-Enum.md)
-  * [Lab 2 - Hands-on 2 - GPO Enumeration](l02-GPOEnum.md)
-  * [Lab 3 - Hands-on 3 - ACL Enumeration](l03-ACLEnum.md)
-  * [Lab 4 - Hands-on 4 - Trusts Enumeration](l04-TrustsEnum.md)
-  * [Lab 5 - Hands-on 5 - Local Privilege Escalation](l05-LocalPrivEsc.md)
-  * [Lab 6 - Hands-on 6 - Kerberoast](l06-Kerberoast.md)
-  * [Lab 7 - Hands-on 7 - Kerberoast & SetSPN](l07-SetSPN.md)
-  * [Lab 8 - Hands-on 8 - LAPS](l08-LAPS.md)
-  * [Lab 9 - Hands-on 9 - Mimikatz](l09-Mimikatz.md)
-  * [Lab 10 - Hands-on 10 - Abuse Trust of MS Exchange](l10-Exchange.md)
+  * [BloodHound](l00-Bloodhound.md)
+  * [Hands-on 1 - Basic Enumeration](l01-Enum.md)
+  * [Hands-on 2 - GPO Enumeration](l02-GPOEnum.md)
+  * [Hands-on 3 - ACL Enumeration](l03-ACLEnum.md)
+  * [Hands-on 4 - Trusts Enumeration](l04-TrustsEnum.md)
+  * [Hands-on 5 - Local Privilege Escalation](l05-LocalPrivEsc.md)
+  * [Hands-on 6 - Kerberoast](l06-Kerberoast.md)
+  * [Hands-on 7 - Kerberoast & SetSPN](l07-SetSPN.md)
+  * [Hands-on 8 - LAPS](l08-LAPS.md)
+  * [Hands-on 9 - Mimikatz](l09-Mimikatz.md)
+  * [Hands-on 10 - Abuse Trust of MS Exchange](l10-Exchange.md)
+  * [Hands-on 11 - Unconstrained Delegation](l11-UnconstrainedDelegation.md)
 
 - - - - 

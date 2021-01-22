@@ -127,6 +127,9 @@ Similar command can be used for any other service on a machine. Which services? 
 List of SPN:
 - List of SPNs: https://adsecurity.org/?page_id=183
 
+Useful list of services:
+- https://adsecurity.org/?p=2011
+
 <br/>
 
 | Mimikatz Parameters | |

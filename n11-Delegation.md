@@ -7,7 +7,7 @@
   - [Unconstrained Delegation & Printer Bug](#unconstrained-delegation--printer-bug)
   - [Constrained Delegation](#constrained-delegation)
   - [Leveraging Constrained Delegation](#leveraging-constrained-delegation)
-  - [Persistence using `msDS-AllowedToDelegateTo`](#persistence-using-msds-allowedtodelegateto)
+  - [Persistence using msDS-AllowedToDelegateTo](#persistence-using-msds-allowedtodelegateto)
 
 ----
 
@@ -252,7 +252,7 @@ winrs -r:us-mssql cmd.exe
 
 ---
 
-## Persistence using `msDS-AllowedToDelegateTo`
+## Persistence using msDS-AllowedToDelegateTo
 
 Note that the `msDS-AllowedToDelegateTo` is the user account flag which controls the services to which a user account has access to. This means, with enough privileges, **it is possible to access any service from a user** – a neat persistence trick.
 

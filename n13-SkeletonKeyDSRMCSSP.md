@@ -3,6 +3,7 @@
 - [Domain Persistence - Skeleton Key, DSRM and Custom SSP](#domain-persistence---skeleton-key-dsrm-and-custom-ssp)
   - [Skeleton Key](#skeleton-key)
   - [DSRM](#dsrm)
+  - [Custom SSP](#custom-ssp)
 
 ---
 
@@ -114,6 +115,8 @@ Enter-PSSession -ComputerName us-dc -Authentication Negotiate
 <br/>
 
 ---
+
+## Custom SSP
 
 A **Security Support Provider (SSP)** is a **DLL** which provides ways for an application to obtain an authenticated connection. Some SSP Packages by Microsoft are:
 

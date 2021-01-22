@@ -33,5 +33,6 @@
   * [Hands-on 11 - Unconstrained Delegation](l11-UnconstrainedDelegation.md)
   * [Hands-on 12 - Constrained Delegation](l12-ConstrainedDelegation.md)
   * [Hands-on 13 - Resource-based Constrained Delegation](l13-RBCD.md)
+  * [Hands-on 14 - Golden Tickets](l14-GoldenTicket.md)
 
 - - - - 

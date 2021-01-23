@@ -39,5 +39,6 @@
   * [Hands-on 14 - Golden Tickets](l14-GoldenTicket.md)
   * [Hands-on 15 - Silver Tickets](l15-SilverTicket.md)
   * [Hands-on 16 - Persistence using ACL & DCSync](l16-DCSync.md)
+  * [Hands-on 17 - Cross Trust Attacks - MS Exchange](l17-ESExchange2.md)
   
 - - - - 

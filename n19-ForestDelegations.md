@@ -2,7 +2,7 @@
 
 - [Cross Forest Attacks - Delegations](#cross-forest-attacks---delegations)
   - [Privilege Escalation - Constrained Delegation with Protocol Transition](#privilege-escalation---constrained-delegation-with-protocol-transition)
-  - [](#)
+  - [Cross Forest - Unconstrained Delegation](#cross-forest---unconstrained-delegation)
 
 ---
 
@@ -57,4 +57,36 @@ C:\AD\Tools\SharpKatz.exe --Command dcsync --User eu\administrator --Domain eu.l
 
 <br/>
 
-## 
+## Cross Forest - Unconstrained Delegation
+
+Recall the Printer bug and its abuse from a machine with Unconstrained Delegation - we have used it to escalate privileges to Domain Admin and Enterprise Admin.
+
+- It also works across a **Two-way forest trust with TGT Delegation** enabled!
+
+**TGT Delegation is disabled by default** and must be explicitly enabled across a trust for the trusted (target) forest.
+
+In the lab, `TGTDelegation` is set from `usvendor.local `to techcorp.local (but not set for the other direction).
+
+<br/>
+
+**Enumeration**
+
+To enumerate if `TGTDelegation` is enabled across a forest trust, run the below command from a DC:
+
+```
+netdom trust <trustingforest> /domain:<trustedforest> /EnableTgtDelegation
+```
+
+```
+LAB: See if `usvendor.local` trusts `techcorp.local`
+
+netdom trust usvendor.local /domain:techcorp.local /EnableTgtDelegation
+```
+
+Note:
+The PowerShell cmdlets of the ADModule seems to have a bug, the below command shows TGTDelegation set to False:
+`Get-ADTrust -server usvendor.local -Filter *`
+- But when run from `usvendor-dc`, it shows `TGTDelegation` to be `True`.
+
+<br/>
+

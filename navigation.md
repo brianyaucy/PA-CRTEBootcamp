@@ -50,5 +50,6 @@
   * [Hands-on 21 - Cross Domains Attacks - krbtgt](l21-forestkrbtgt.md)
   * [Hands-on 22 - Cross Forest Attacks - Kerberoast](l22-CrossForestKerberoast.md)
   * [Hands-on 23 - Cross Forest Attacks - Constrained Delegation](l23-XForestConstrainedDelegation.md)
+  * [Hands-on 24 - Cross Forest Attacks - Unconstrained Delegation](l24-XForestUnconstrainedDelegation.md)
   
 - - - - 

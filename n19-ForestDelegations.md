@@ -2,6 +2,7 @@
 
 - [Cross Forest Attacks - Delegations](#cross-forest-attacks---delegations)
   - [Privilege Escalation - Constrained Delegation with Protocol Transition](#privilege-escalation---constrained-delegation-with-protocol-transition)
+  - [](#)
 
 ---
 
@@ -56,3 +57,4 @@ C:\AD\Tools\SharpKatz.exe --Command dcsync --User eu\administrator --Domain eu.l
 
 <br/>
 
+## 

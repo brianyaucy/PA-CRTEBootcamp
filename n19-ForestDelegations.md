@@ -65,7 +65,7 @@ Recall the Printer bug and its abuse from a machine with Unconstrained Delegatio
 
 **TGT Delegation is disabled by default** and must be explicitly enabled across a trust for the trusted (target) forest.
 
-In the lab, `TGTDelegation` is set from `usvendor.local `to techcorp.local (but not set for the other direction).
+In the lab, `TGTDelegation` is set from `usvendor.local `to `techcorp.local` (but not set for the other direction).
 
 <br/>
 
@@ -78,13 +78,14 @@ netdom trust <trustingforest> /domain:<trustedforest> /EnableTgtDelegation
 ```
 
 ```
-LAB: See if `usvendor.local` trusts `techcorp.local`
+LAB: <br/>
+See if `usvendor.local` trusts `techcorp.local`
 
 netdom trust usvendor.local /domain:techcorp.local /EnableTgtDelegation
 ```
 
 Note:
-The PowerShell cmdlets of the ADModule seems to have a bug, the below command shows TGTDelegation set to False:
+The PowerShell cmdlets of the ADModule seems to have a bug, the below command shows TGTDelegation set to `False`:
 `Get-ADTrust -server usvendor.local -Filter *`
 - But when run from `usvendor-dc`, it shows `TGTDelegation` to be `True`.
 

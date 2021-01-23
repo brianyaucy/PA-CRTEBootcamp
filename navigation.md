@@ -20,6 +20,7 @@
   * [Cross Turst Attacks - Azure AD Integration](n16-AzureAD.md)
   * [Cross Domain Attacks - Forest Root - Trust Key & krbtgt](n17-TrustKeynKrbtgt.md)
   * [Cross Forest Attacks - Kerberoast](n18-ForestKerberoast.md)
+  * [Cross Forest Attacks - Delegations](n19-ForestDelegations.md)
 
 - - - -
 

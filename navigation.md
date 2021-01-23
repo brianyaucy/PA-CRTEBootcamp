@@ -19,6 +19,7 @@
   * [Cross Trust Attacks - MS Exchange](n15-CrossTrustExchange.md)
   * [Cross Turst Attacks - Azure AD Integration](n16-AzureAD.md)
   * [Cross Domain Attacks - Forest Root - Trust Key & krbtgt](n17-TrustKeynKrbtgt.md)
+  * [Cross Forest Attacks - Kerberoast](n18-ForestKerberoast.md)
 
 - - - -
 
@@ -46,5 +47,6 @@
   * [Hands-on 19 - Cross Trust Attacks - Azure AD](l19-AzureAD.md)
   * [Hands-on 20 - Cross Domains Attacks - Trust Keys](l20-TrustKey.md)
   * [Hands-on 21 - Cross Domains Attacks - krbtgt](l21-forestkrbtgt.md)
+  * [Hands-on 22 - Cross Forest Attacks - Kerberoast](l22-CrossForestKerberoast.md)
   
 - - - - 

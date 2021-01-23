@@ -40,5 +40,6 @@
   * [Hands-on 15 - Silver Tickets](l15-SilverTicket.md)
   * [Hands-on 16 - Persistence using ACL & DCSync](l16-DCSync.md)
   * [Hands-on 17 - Cross Trust Attacks - MS Exchange](l17-ESExchange2.md)
+  * [Hands-on 18 - Unconstrained Delegation to Enterprise Admin](l18-WebUnconstrainedDelegation.md)
   
 - - - - 

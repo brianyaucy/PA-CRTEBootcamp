@@ -45,5 +45,6 @@
   * [Hands-on 18 - Unconstrained Delegation to Enterprise Admin](l18-WebUnconstrainedDelegation.md)
   * [Hands-on 19 - Cross Trust Attacks - Azure AD](l19-AzureAD.md)
   * [Hands-on 20 - Cross Domains Attacks - Trust Keys](l20-TrustKey.md)
+  * [Hands-on 21 - Cross Domains Attacks - krbtgt](l21-forestkrbtgt.md)
   
 - - - - 

@@ -49,5 +49,6 @@
   * [Hands-on 20 - Cross Domains Attacks - Trust Keys](l20-TrustKey.md)
   * [Hands-on 21 - Cross Domains Attacks - krbtgt](l21-forestkrbtgt.md)
   * [Hands-on 22 - Cross Forest Attacks - Kerberoast](l22-CrossForestKerberoast.md)
+  * [Hands-on 23 - Cross Forest Attacks - Constrained Delegation](l23-XForestConstrainedDelegation.md)
   
 - - - - 

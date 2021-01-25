@@ -79,7 +79,7 @@ netdom trust <trustingforest> /domain:<trustedforest> /EnableTgtDelegation
 
 ```
 LAB: <br/>
-See if `usvendor.local` trusts `techcorp.local`
+See if `usvendor.local` trusts `techcorp.local`, run the following in `usvendor-dc`.
 
 netdom trust usvendor.local /domain:techcorp.local /EnableTgtDelegation
 ```

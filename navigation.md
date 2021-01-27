@@ -22,6 +22,7 @@
   * [Cross Forest Attacks - Kerberoast](n18-ForestKerberoast.md)
   * [Cross Forest Attacks - Delegations](n19-ForestDelegations.md)
   * [Cross Forest Attacks - Trust Key](n20-CrossForestTurstKey.md)
+  * [Cross Forest Attacks - MSSQL Servers](n21-XForestSQL.md)
 
 - - - -
 
@@ -53,5 +54,6 @@
   * [Hands-on 23 - Cross Forest Attacks - Constrained Delegation](l23-XForestConstrainedDelegation.md)
   * [Hands-on 24 - Cross Forest Attacks - Unconstrained Delegation](l24-XForestUnconstrainedDelegation.md)
   * [Hands-on 25 - Cross Forest Attacks - Trust Key](l25-XForestTrustKey.md)
+  * [Hands-on 26 - Cross Forest Attacks - MSSQL Servers](l26-XForestMSSQL.md)
   
 - - - - 

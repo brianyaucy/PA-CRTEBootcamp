@@ -21,6 +21,7 @@
   * [Cross Domain Attacks - Forest Root - Trust Key & krbtgt](n17-TrustKeynKrbtgt.md)
   * [Cross Forest Attacks - Kerberoast](n18-ForestKerberoast.md)
   * [Cross Forest Attacks - Delegations](n19-ForestDelegations.md)
+  * [Cross Forest Attacks - Trust Key](n20-CrossForestTurstKey.md)
 
 - - - -
 

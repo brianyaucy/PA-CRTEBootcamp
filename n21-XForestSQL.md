@@ -19,7 +19,7 @@ Let's see one scenario where we can abuse SQL servers trust and database links t
 - https://github.com/NetSPI/PowerUpSQL
 
 ```
-. C:\AD\Tools\PowerUpSQL.psd1
+. C:\AD\Tools\PowerUpSQL-master\PowerUpSQL.ps1
 ```
 
 <br/>

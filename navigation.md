@@ -23,6 +23,7 @@
   * [Cross Forest Attacks - Delegations](n19-ForestDelegations.md)
   * [Cross Forest Attacks - Trust Key](n20-CrossForestTurstKey.md)
   * [Cross Forest Attacks - MSSQL Servers](n21-XForestSQL.md)
+  * [Cross Forest Attacks - Foreign Security Principals & ACLs](n22-XForestFSPACL.md)
 
 - - - -
 
@@ -55,5 +56,6 @@
   * [Hands-on 24 - Cross Forest Attacks - Unconstrained Delegation](l24-XForestUnconstrainedDelegation.md)
   * [Hands-on 25 - Cross Forest Attacks - Trust Key](l25-XForestTrustKey.md)
   * [Hands-on 26 - Cross Forest Attacks - MSSQL Servers](l26-XForestMSSQL.md)
+  * [Hands-on 27 - Cross Forest Attacks - Foreign Security Principals & ACLs](l27-XForestFSPACL.md)
   
 - - - - 

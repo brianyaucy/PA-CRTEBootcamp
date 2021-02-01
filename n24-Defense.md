@@ -1,6 +1,6 @@
-# Detection and Defense
+# Defenses
 
-- [Detection and Defense](#detection-and-defense)
+- [Defenses](#defenses)
   - [Overview](#overview)
   - [Protect and Limit Domain Admins](#protect-and-limit-domain-admins)
   - [Isolcate administrative workstations](#isolcate-administrative-workstations)

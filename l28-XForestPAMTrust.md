@@ -130,10 +130,9 @@ Invoke-Command -ScriptBlock {Get-ADTrust -Filter *} -Session $bastiondc
 or
 
 ```
-```
 Invoke-Command -ScriptBlock {Get-ADTrust -Filter {(ForestTransitive -eq $True) -and (SIDFilteringQuarantined -eq $False)}} -Session $bastiondc
 ```
-```
+
 
 ![picture 8](images/b532bc1d26b2a25b2cacfba95d5e1c168c2ba56dc1e5f57a44d244236540f00d.png)  
 

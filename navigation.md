@@ -25,6 +25,7 @@
   * [Cross Forest Attacks - MSSQL Servers](n21-XForestSQL.md)
   * [Cross Forest Attacks - Foreign Security Principals & ACLs](n22-XForestFSPACL.md)
   * [Cross Forest Attacks - Abusing PAM Trust](n23-XForestPAMTrust.md)
+  * [Detection & Defense](n24-Defense.md)
 
 - - - -
 
